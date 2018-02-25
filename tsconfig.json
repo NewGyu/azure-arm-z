@@ -1,0 +1,22 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2017",
+    "module": "commonjs",
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "rootDir": "./src",
+    "outDir": "./lib" /* Redirect output structure to the directory. */,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "strictPropertyInitialization": false,
+    /* Additional Checks */
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": false /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  }
+}
