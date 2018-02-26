@@ -4,5 +4,8 @@ module.exports = {
   resourceGroup: {
     name: "my-arm-trial",
     location: "japaneast"
+  },
+  parameters: {
+    storageNamePrefix: { value: "unkokko" }
   }
 };

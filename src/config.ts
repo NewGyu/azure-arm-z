@@ -17,6 +17,8 @@ export class ZConfig {
   @IsDefined()
   resourceGroup: ResourceGroup;
   @IsString() subscliptionId?: string;
+
+  parameters?: object;
   logger?: Logger;
   [opts: string]: any;
 }
