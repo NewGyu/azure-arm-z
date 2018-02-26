@@ -18,7 +18,7 @@ export class Deployer {
   private rmClient: ResourceManagementClient;
   private logger: Logger;
 
-  constructor(private config: ZConfig, credentials: ServiceClientCredentials, subscriptionId: string) {
+  constructor(private config: ZConfig.ZConfig, credentials: ServiceClientCredentials, subscriptionId: string) {
     this.rmClient = new ResourceManagementClient(credentials, subscriptionId);
     this.logger = config.logger as Logger;
   }

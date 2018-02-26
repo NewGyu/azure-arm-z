@@ -1,19 +1,19 @@
 import * as commander from "commander";
-import { create, ZConfig } from "./config";
+import { ZConfig } from "./config";
 import { Deployer } from "./deployer";
 import { ServiceClientCredentials } from "ms-rest";
 import * as az from "ms-rest-azure";
 import { Logger, DefaultLogger } from "./logger";
 
 export class EasyCommander {
-  private config: ZConfig;
+  private config: ZConfig.ZConfig;
   private logger: Logger;
 
   constructor(config: object, private template: object) {
     if (!config) throw new Error("config is required.");
     if (!template) throw new Error("template is required.");
 
-    this.config = create(config);
+    this.config = ZConfig.create(config);
     this.config.subscliptionId = process.env.AZURE_SUBSCRIPTION_ID || this.config.subscliptionId;
     this.logger = this.logger || DefaultLogger;
 

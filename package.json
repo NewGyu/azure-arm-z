@@ -1,17 +1,24 @@
 {
   "name": "azure-arm-z",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Azure ARM Wrapper",
   "engines": {
     "node": "~8.9.0",
     "npm": "~5.3.0"
   },
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
-  "author": "",
+  "author": "NewGyu",
+  "keywords": ["Azure", "ResourceManager"],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NewGyu/azure-arm-z"
+  },
   "devDependencies": {
     "@types/debug": "0.0.30",
     "tslint": "^5.9.1",
