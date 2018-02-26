@@ -48,27 +48,29 @@ export class EasyCommander {
   }
 
   private async _deploy() {
-    this.logger.info("deploy ...");
     this.logger.info(JSON.stringify(this.template, null, 2));
+    this.logger.info("deploy ...");
     const deployer = await this._createDeployer();
     await deployer.deploy(this.template);
+    this.logger.info("deploy ... FINISHED.");
   }
 
   private async _validate() {
-    this.logger.info("validate ...");
     this.logger.info(JSON.stringify(this.template, null, 2));
+    this.logger.info("validate ...");
     const deployer = await this._createDeployer();
     await deployer.validate(this.template);
+    this.logger.info("validation OK.");
   }
 
   private async _destroy() {
     this.logger.info("destroy ...");
     const deployer = await this._createDeployer();
     await deployer.destroy();
+    this.logger.info("destroy ... FINISHED.");
   }
 
   private _finalizeHandler() {
-    this.logger.info("Finished.");
     process.exit(0);
   }
 

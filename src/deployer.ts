@@ -20,6 +20,7 @@ export class Deployer {
 
   constructor(private config: ZConfig, credentials: ServiceClientCredentials, subscriptionId: string) {
     this.rmClient = new ResourceManagementClient(credentials, subscriptionId);
+    this.logger = config.logger as Logger;
   }
 
   async deploy(template: object) {
@@ -38,7 +39,7 @@ export class Deployer {
   async destroy() {
     const resourceGroupName = this.config.resourceGroup.name;
     const exists = await this.rmClient.resourceGroups.checkExistence(resourceGroupName);
-    if (!exists) return;
+    if (!exists) throw new Error(`ResourceGroup [${resourceGroupName}] is not exists.`);
     await this.rmClient.resourceGroups.deleteMethod(resourceGroupName);
   }
 
@@ -65,7 +66,7 @@ export class Deployer {
       tags: resourceGroup.tags
     };
     await this.rmClient.resourceGroups.createOrUpdate(resourceGroup.name, rgParams);
-    this.logger.info(`ResourceGroup[${resourceGroup.name}] is ${exists ? "updated" : "created"}.`);
+    this.logger.info(`ResourceGroup [${resourceGroup.name}] is ${exists ? "updated" : "created"}.`);
   }
 
   private async _validate(deployment: Deployment) {
