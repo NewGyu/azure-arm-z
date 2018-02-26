@@ -24,13 +24,14 @@ export class Deployer {
 
   async deploy(template: object) {
     const deployment = this._createDeploymentObj(template);
-    await this._validate(deployment);
     await this._createOrUpdateResourceGroup();
+    await this._validate(deployment);
     await this.rmClient.deployments.createOrUpdate(deployment.resourceGroupName, deployment.name, deployment);
   }
 
   async validate(template: object) {
     const deployment = this._createDeploymentObj(template);
+    await this._createOrUpdateResourceGroup();
     await this._validate(deployment);
   }
 
@@ -69,6 +70,10 @@ export class Deployer {
 
   private async _validate(deployment: Deployment) {
     const resourceGroupName = this.config.resourceGroup.name;
-    this.rmClient.deployments.validate(resourceGroupName, deployment.name, deployment);
+    const r = await this.rmClient.deployments.validate(resourceGroupName, deployment.name, deployment);
+    const err = r.error;
+    if (err) {
+      throw new Error(JSON.stringify(err, null, 2));
+    }
   }
 }
